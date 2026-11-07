@@ -1,7 +1,3 @@
-Write your reflection here.
-
-See reflection.md for what makes a good reflection — be specific, use the
-terminology from this assignment (REST API, endpoint, HTTP status code,
-raise_for_status, API key, form data vs. JSON body, rate limit, caching,
-json_normalize, record_path, meta, grain, opinion mining, named-entity
-recognition, prompt, system prompt, reasoning model), and make it actionable.
+The four API functions call the CENT portal with the key from .env. The Azure endpoints get form data and the AI endpoints get a JSON body, and raise_for_status() makes any HTTP error fail right at the request.
+The pipeline caches every API response to a file so the 150-request daily limit isn’t a problem. json_normalize flattens the sentences and entities, and nested loops flatten the opinion targets, which point to their assessments by reference.
+Opinion mining and named-entity recognition are combined into one table of mentions, which feeds a pivot-table summary and a Streamlit page. On that page, pandas does the counting and the language model only writes the answer from the facts it’s given.
